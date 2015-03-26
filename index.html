@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Campus Marais</title>
+  <script src='app/bower_components/jquery/dist/jquery.min.js'></script>
+  <script src='app/bower_components/mapbox.js/mapbox.js'></script>
+  <script src='app/bower_components/async/lib/async.js'></script>
+  <script src='app/bower_components/lodash/lodash.js'></script>
+  <script src='app/bower_components/bootstrap/dist/js/bootstrap.js'></script>
+  <script src='app/bower_components/switchery/dist/switchery.js'></script>
+  <script src='app/asset/data.js'></script>
+  <script src='app/script/app.js'></script>
+  <link href='app/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' />
+  <link href='app/bower_components/switchery/dist/switchery.min.css' rel='stylesheet' />
+  <link href='app/css/bootstrap.theme.css' rel='stylesheet' />
+  <link href='app/bower_components/mapbox.js/mapbox.css' rel='stylesheet' />
+  <link href='app/css/template.css' rel='stylesheet' />
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">MARAIS CAMPUS</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Alimentation <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a id="supermarket" class="link-map" href="#supermarket">Supermarchés</a></li>
+              <li><a id="market" class="link-map" href="#market">Marchés</a></li>
+              <li><a id="bakery" class="link-map" href="#bakery">Boulangeries</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Restauration <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a class="link-map" id="bar" href="#bar">Restaurant / Bars</a></li>
+              <li><a class="link-map" id="coffee" href="#coffee">Cafés</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Espace de travail <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Bibliothèques -</a></li>
+              <li><a class="link-map" id="student" href="#student">Espace étudiant</a></li>
+              <li><a class="link-map" id="room" href="#room">Salles disponibles</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sport <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Gymnase -</a></li>
+              <li><a href="#">Piscine -</a></li>
+              <li><a class="link-map" id="fitness" href="#fitness">Fitness</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilitaires <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a class="link-map" id="house" href="#">Service logement</a></li>
+              <li><a class="link-map" id="laundry" href="#laundry">Laverie</a></li>
+              <li><a class="link-map" id="register" href="#register">Inscription / Logistique</a></li>
+              <li><a href="#">Ecole - </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container-fluid" id="wrapper">
+    <div id="extra-panel">
+        <div><input class="js-switch" id="velibCheckbox" checked type="checkbox"> <label for="velibCheckbox">Velibs</label></div>
+        <div><input class="js-switch" id="autolibCheckbox" checked type="checkbox"> <label for="velibCheckbox">Autolib</label></div>
+        <div><input class="js-switch" id="greenWayCheckbox" checked type="checkbox"> <label for="velibCheckbox">Coulée verte</label></div>
+    </div>
+    <div id="map">
+    </div>
+  </div><!-- /.container -->
+</body>
+</html>
