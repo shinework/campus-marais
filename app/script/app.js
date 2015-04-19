@@ -19,13 +19,6 @@ $(document).ready(function() {
     }
   });
 
-  var greenWayCoo = [];
-  _.forEach(data['greenWay'], function(positions) {
-    greenWayCoo.push(L.latLng(positions[1], positions[0]));
-  });
-  var greenWayLayout = L.layerGroup([L.polyline(greenWayCoo, {color: 'green'})]);
-  greenWayLayout.addTo(map);
-
   // Add panel stuff
   var controlPanel = {
     'autolib': {
@@ -42,13 +35,27 @@ $(document).ready(function() {
     }
   };
 
+  var classicWayCoo = [];
+  _.forEach(data['classicWay'], function(positions) {
+    classicWayCoo.push(L.latLng(positions[1], positions[0]));
+  });
+  var classicWayLayout = L.layerGroup([L.polyline(classicWayCoo, {color: '#60cde4', dashArray: '20,15'})]);
+
+  var greenWayCoo = [];
+  _.forEach(data['greenWay'], function(positions) {
+    greenWayCoo.push(L.latLng(positions[1], positions[0]));
+  });
+  var greenWayLayout = L.layerGroup([L.polyline(greenWayCoo, {color: 'green', dashArray: '20,15'})]);
+
+  var userMarker = L.marker([48.86055289999999, 2.357431600000041], {icon: L.icon({ iconUrl: 'app/asset/icon-user.png', iconSize: [20, 25] })})
+  userMarker.addTo(map);
+
   _.forEach(controlPanel, function(control, id) {
     _.forEach(data[id], function(station) {
       control.markers.push(L.marker([station.lat, station.lng], {icon: control.marker}));
     });
 
     control.layer = L.layerGroup(control.markers);
-    control.layer.addTo(map);
 
     $('#' + control.checkboxId).change(function() {
       if($(this).is(":checked")) {
@@ -70,9 +77,24 @@ $(document).ready(function() {
     var id = $(this).attr('id');
     var markersMap = [];
 
+    var poiClicked = false;
     var locations = data[id]
     _.forEach(locations, function(location) {
-      markersMap.push(L.marker([location.lat, location.lng], {icon: poiMarker}));
+      var marker = L.marker([location.lat, location.lng], {icon: poiMarker});
+      markersMap.push(marker);
+
+      marker.on('click', function(e) {
+        if (poiClicked) {
+          poiClicked = false;
+          map.removeLayer(classicWayLayout);
+          map.removeLayer(greenWayLayout);
+        } else {
+          poiClicked = true;
+
+          map.addLayer(classicWayLayout);
+          map.addLayer(greenWayLayout);
+        }
+      });
     });
 
     poiLayer = L.layerGroup(markersMap);
